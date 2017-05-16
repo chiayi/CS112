@@ -1,0 +1,16 @@
+5
+A
+df
+re
+C
+D
+A df 1
+df A 1
+re C 2
+C re 2
+A re 5
+re A 5
+C D 10
+D C 10
+D df 5
+df D 5
