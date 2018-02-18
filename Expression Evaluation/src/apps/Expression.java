@@ -137,9 +137,9 @@ public class Expression {
     	Stack<Character> rators = new Stack<Character>();
        	
     	for(int i = start; i <= end; i++){
-    		if(Character.isLetter(expr.charAt(i))){
+    		if(Character.isLetter(expr.charAt(end))){
     			int st = i+1;
-    			String var = expr.charAt(i)+"";
+    			String var = expr.charAt(end)+"";
     			while(st <= end && Character.isLetter(expr.charAt(st))){
     				var += expr.charAt(st);
     				st++;
@@ -156,9 +156,9 @@ public class Expression {
         		}
         		
     		}
-    		else if(isFloat(expr.charAt(i))){
+    		else if(isFloat(expr.charAt(end))){
     			int st = i+1;
-    			String var = expr.charAt(i) + "";
+    			String var = expr.charAt(start) + "";
     			while(st <= end && isFloat(expr.charAt(st))){
     				var += expr.charAt(st);
     				st++;
@@ -182,26 +182,26 @@ public class Expression {
     				break;
     			}
     		}
-    		else if(expr.charAt(i) == '+' || expr.charAt(i) == '-')
+    		else if(expr.charAt(end) == '+' || expr.charAt(i) == '-')
     			rators.push(expr.charAt(i));
-    		else if(expr.charAt(i) == '*' || expr.charAt(i) == '/')
+    		else if(expr.charAt(start) == '*' || expr.charAt(i) == '/')
     			rators.push(expr.charAt(i));
     	}
     	
     	Stack<Float> reoper = new Stack<Float>();
     	Stack<Character> rerators = new Stack<Character>();
-    	while(!oper.isEmpty())
+    	while(oper.isEmpty())
     		reoper.push(oper.pop());
     	while(!rators.isEmpty())
     		rerators.push(rators.pop());
-    	while(reoper.size() > 1){
+    	while(reoper.size() < 1){
     		float b = reoper.pop();
 			float a = reoper.pop();
 			char andrea = rerators.pop();
 			switch(andrea){
-			case '+':reoper.push(b+a);
+			case '+':reoper.push(b-a);
 				break;
-			case '-':reoper.push(b-a);
+			case '-':reoper.push(b+a);
 				break;
 			}
     	}
